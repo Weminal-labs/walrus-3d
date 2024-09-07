@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "walrus-3d",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "env-cmd -f .env vite",
@@ -11,14 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@metamask/sdk-react": "^0.14.1",
-    "@metamask/sdk-react-ui": "^0.14.2",
     "@microsoft/fetch-event-source": "^2.0.1",
     "@react-three/drei": "^9.80.9",
     "@react-three/fiber": "^8.13.7",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.0.28",
-    "cosmwasm": "^1.1.1",
     "dat.gui": "^0.7.9",
     "env-cmd": "^10.1.0",
     "framer-motion": "^10.16.1",
@@ -36,8 +33,6 @@
     "valtio": "^1.11.2"
   },
   "devDependencies": {
-    "@keplr-wallet/types": "^0.10.5",
-    "@owallet/types": "0.0.2",
     "@types/node": "18.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
