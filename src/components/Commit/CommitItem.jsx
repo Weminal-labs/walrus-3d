@@ -1,5 +1,3 @@
-import { approveCommit } from "../../api/NFT";
-
 export const CommitItem = ({ commit, setCommits, setDecalImageURL }) => {
   function viewCommit(eueno_url) {
     console.log(eueno_url)
@@ -9,11 +7,11 @@ export const CommitItem = ({ commit, setCommits, setDecalImageURL }) => {
   function handleApproveCommit({ tokenId, commitId }) {
 
     console.log(commitId)
-    const tx = approveCommit({
-      token_id: tokenId,
-      commit_id: commitId,
-    });
-    console.log(tx);
+    // const tx = approveCommit({
+    //   token_id: tokenId,
+    //   commit_id: commitId,
+    // });
+    // console.log(tx);
     setCommits((prev) =>
       prev.map((item) => {
         if (item.id === commitId) {

@@ -16,7 +16,6 @@ import {
   Tab,
 } from "../components";
 import { Chatbot } from "../components/Prompt";
-import { commit } from "../api/NFT";
 import { useParams } from "react-router-dom";
 import { CommitList } from "../components/Commit/CommitList";
 import { toast } from "react-toastify";

@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getTokenInfo } from "../../api/NFT";
 import { CommitItem } from "./CommitItem";
 import { CloseButton } from "../Prompt/CloseButton";
 
