@@ -1,9 +1,8 @@
 import { u256ToBlobId } from "../../utils";
 
 export const CommitItem = ({ blobObject, setDecalImageURL }) => {
-  function viewCommit(eueno_url) {
-    console.log(eueno_url);
-    setDecalImageURL(eueno_url);
+  function viewImage(blobId) {
+    setDecalImageURL(`https://cdn.suiftly.io/blob/${blobId}`);
   }
 
   const shorten = (str) => {
@@ -19,12 +18,15 @@ export const CommitItem = ({ blobObject, setDecalImageURL }) => {
           const blobIdBigInt = BigInt(blobObject.data.content.fields["blob_id"]);
           const blobId = u256ToBlobId(blobIdBigInt);
           navigator.clipboard.writeText(blobId);
-          alert('Blob ID copied to clipboard!');
+          // alert('Blob ID copied to clipboard!');
+          viewImage(blobId);
         }}
       >
         {shorten(u256ToBlobId(BigInt(blobObject.data.content.fields["blob_id"])))}
       </td>
-      <td className="text-center border-r border-solid border-collection-1-line px-[20px] py-[10px] truncate"></td>
+      <td className="text-center border-r border-solid border-collection-1-line px-[20px] py-[10px] truncate">
+        {blobObject.fileType}
+      </td>
       <td className="text-center border-r border-solid border-collection-1-line px-[20px] py-[10px] truncate">
         {shorten(
           "0xf1346af6127e9b1717f31a91df9ab26331731dcc7940a881aa2a3fd9e6df099d"
