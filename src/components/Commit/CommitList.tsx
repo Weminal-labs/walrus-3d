@@ -41,7 +41,7 @@ interface BlobObject {
   fileType?: string;
 }
 
-async function getObjectDetails(objectId: string) {
+export async function getObjectDetails(objectId: string) {
   try {
     const response = await axios.post('https://fullnode.testnet.sui.io:443', {
       jsonrpc: "2.0",
@@ -88,6 +88,7 @@ export const CommitList = ({
   setDecalImageURL,
   isShowCommits,
   setIsShowCommits,
+  showToast
 }) => {
   const [blobObjects, setBlobObjects] = useState<BlobObject[]>([]);
   const [filteredBlobObjects, setFilteredBlobObjects] = useState<BlobObject[]>([]);
@@ -134,56 +135,96 @@ export const CommitList = ({
   useEffect(() => {
     if (searchTerm) {
       debouncedSearch(searchTerm);
-    } else {
-      setBlobObjects([]);
     }
   }, [searchTerm, debouncedSearch]);
 
   async function getBlobObjects(page: number) {
-    if (isLoading) return;
     setIsLoading(true);
     try {
-      const response = await axios.post('https://fullnode.testnet.sui.io:443', {
-        jsonrpc: "2.0",
-        id: 1,
-        method: "suix_getOwnedObjects",
-        params: [
-          "0xf1346af6127e9b1717f31a91df9ab26331731dcc7940a881aa2a3fd9e6df099d",
+      if (page == 1) {
+        const hardcodedData = [
           {
-            filter: {
-              MatchAll: [
-                {
-                  StructType: "0x7e12d67a52106ddd5f26c6ff4fe740ba5dea7cfc138d5b1d33863ba9098aa6fe::blob::Blob"
+            data: {
+              objectId: "0xa6ac5cdde5852e512ed4f2c449754e3dca703e761aa8c141fe475572c2e1d0cf",
+              content: {
+                fields: {
+                  blob_id: "99075316042994246840604280150039213562660500472500945553398527188051850515964",
                 }
-              ]
+              }
             },
-            options: {
-              showType: false,
-              showOwner: false,
-              showPreviousTransaction: false,
-              showDisplay: false,
-              showContent: true,
-              showBcs: false,
-              showStorageRebate: false
-            },
+            fileType: "PNG"
           },
-          cursor,
-          itemsPerPage
-        ]
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+          {
+            data: {
+              objectId: "0xf814246cfe939c50deee2978cf01d6ee124780c57ad7172f9962ced4fa8f73e8",
+              content: {
+                fields: {
+                  blob_id: "85397721445717927617032557537662191711024753857276972424557634434463299795646",
+                }
+              }
+            },
+            fileType: "PNG"
+          },
+          {
+            data: {
+              objectId: "0xa8d29449e85cd3c3d6575fd5652887297b6d113bc4ec5da1dd82f52b7fe95393",
+              content: {
+                fields: {
+                  blob_id: "74213830350963654231194428040831789245800711791764903916624901751057305875820",
+                }
+              }
+            },
+            fileType: "PNG"
+          }
+        ];
+        setBlobObjects(hardcodedData);
+        setFilteredBlobObjects(hardcodedData);
+        setCursor(null);
+        setHasNextPage(true);
+      } else {
+        const response = await axios.post('https://fullnode.testnet.sui.io:443', {
+          jsonrpc: "2.0",
+          id: 1,
+          method: "suix_getOwnedObjects",
+          params: [
+            "0xf1346af6127e9b1717f31a91df9ab26331731dcc7940a881aa2a3fd9e6df099d",
+            {
+              filter: {
+                MatchAll: [
+                  {
+                    StructType: "0x7e12d67a52106ddd5f26c6ff4fe740ba5dea7cfc138d5b1d33863ba9098aa6fe::blob::Blob"
+                  }
+                ]
+              },
+              options: {
+                showType: false,
+                showOwner: false,
+                showPreviousTransaction: false,
+                showDisplay: false,
+                showContent: true,
+                showBcs: false,
+                showStorageRebate: false
+              }
+            },
+            cursor,
+            itemsPerPage
+          ]
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
 
-      const blobObjects = response.data.result.data.map((blobObject: BlobObject) => ({
-        ...blobObject,
-        fileType: "application/octet-stream",
-      }));
-      setBlobObjects(blobObjects);
-      setFilteredBlobObjects(blobObjects);
-      setCursor(response.data.result.nextCursor);
-      setHasNextPage(response.data.result.hasNextPage);
+        const blobObjects = response.data.result.data.map((blobObject: BlobObject) => ({
+          ...blobObject,
+          fileType: "application/octet-stream",
+        }));
+        console.log(blobObjects);
+        setBlobObjects(blobObjects);
+        setFilteredBlobObjects(blobObjects);
+        setCursor(response.data.result.nextCursor);
+        setHasNextPage(response.data.result.hasNextPage);
+      }
     } catch (error) {
       console.error("Error loading objects:", error);
     } finally {
@@ -214,7 +255,7 @@ export const CommitList = ({
           <div className="p-4">
             <input
               type="text"
-              placeholder="Search by Blob ID or File Type"
+              placeholder="Search by Sui Object ID"
               value={searchTerm}
               onChange={handleSearch}
               className="w-full p-2 mb-4 bg-gray-700 text-gray-200 rounded-md"

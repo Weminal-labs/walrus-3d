@@ -4,7 +4,7 @@ import { useSnapshot } from "valtio";
 
 import config from "../config/config";
 import state from "../store";
-import { download, mint, commits } from "../assets";
+import { download, mint, commits, fileImg } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
@@ -20,7 +20,7 @@ import { useParams } from "react-router-dom";
 import { CommitList } from "../components/Commit/CommitList";
 import { toast } from "react-toastify";
 
-const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
+const Customizer = ({ decalImageURL, setDecalImageURL, showToast }) => {
   const snap = useSnapshot(state);
 
   const [file, setFile] = useState("");
@@ -44,7 +44,16 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
       case "colorpicker":
         return <ColorPicker />;
       case "filepicker":
-        return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
+        return (
+          <FilePicker
+            setDecalImageURL={setDecalImageURL}
+            showToast={showToast}
+            file={file}
+            setFile={setFile}
+            readFile={readFile}
+            setActiveEditorTab={setActiveEditorTab} // Add this line
+          />
+        );
       case "aipicker":
         return (
           <Chatbot
@@ -79,8 +88,15 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
             </a>
           </div>
         );
-        case "commits":
-          return <CommitList setDecalImageURL={setDecalImageURL} isShowCommits={isShowCommits} setIsShowCommits={setIsShowCommits}/>
+      case "commits":
+        return (
+          <CommitList
+            showToast={showToast}
+            setDecalImageURL={setDecalImageURL}
+            isShowCommits={isShowCommits}
+            setIsShowCommits={setIsShowCommits}
+          />
+        );
       default:
         return null;
     }
@@ -123,7 +139,8 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
   const readFile = (type) => {
     reader(file).then((result) => {
       handleDecals(type, result);
-      setActiveEditorTab("");
+      setDecalImageURL(result);
+      // setActiveEditorTab("");
     });
   };
 
@@ -151,12 +168,19 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
                   />
                 ))}
                 <Tab
+                  key={"filepicker"}
+                  tab={{ name: "filepicker", icon: fileImg }}
+                  handleClick={() => {
+                    setActiveEditorTab("filepicker");
+                  }}
+                />
+                {/* <Tab
                   key={"mint"}
                   tab={{ name: "mint", icon: mint }}
                   handleClick={() => {
                     setActiveEditorTab("mint");
                   }}
-                />
+                /> */}
                 <Tab
                   key={"commits"}
                   tab={{ name: "commits", icon: commits }}

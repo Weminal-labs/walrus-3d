@@ -1,8 +1,13 @@
 import { u256ToBlobId } from "../../utils";
+import { toast, ToastContainer } from 'react-toastify';
 
 export const CommitItem = ({ blobObject, setDecalImageURL }) => {
   function viewImage(blobId) {
-    setDecalImageURL(`https://cdn.suiftly.io/blob/${blobId}`);
+    if (blobObject.fileType !== 'application/octet-stream') {
+      setDecalImageURL(`https://cdn.suiftly.io/blob/${blobId}`);
+    } else {
+      toast("This file type is not supported");
+    }
   }
 
   const shorten = (str) => {
@@ -19,7 +24,7 @@ export const CommitItem = ({ blobObject, setDecalImageURL }) => {
           const blobId = u256ToBlobId(blobIdBigInt);
           navigator.clipboard.writeText(blobId);
           // alert('Blob ID copied to clipboard!');
-          viewImage(blobId);
+          viewImage(blobId, blobObject);
         }}
       >
         {shorten(u256ToBlobId(BigInt(blobObject.data.content.fields["blob_id"])))}
