@@ -19,17 +19,6 @@ function App() {
   return (
     <>
       <main className="app transition-all ease-in">
-        <div
-          className="absolute w-[400px] bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
-          role="alert"
-          style={{ zIndex: 1 }}
-        >
-          <span className="block sm:inline">
-            Because our server is running on Eueno, in order to interact with
-            images, you will need to request the developer to generate a project
-            key for you
-          </span>
-        </div>
         <Home />
         <Canvas
           collectionFound={collectionFound}

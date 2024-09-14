@@ -27,7 +27,6 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
 
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([]);
-  const [generatingImg, setGeneratingImg] = useState(false);
 
   const [isExpanded, setIsExpanded] = useState(false); // Prompt sidebar
   const [isShowCommits, setIsShowCommits] = useState(false); // CommitList
@@ -38,8 +37,6 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
     logoShirt: true,
     stylishShirt: false,
   });
-
-  const {id} = useParams();
 
   // show tab content depending on the activeTab
   const generateTabContent = () => {
@@ -57,7 +54,6 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
             setMessages={setMessages}
             isExpanded={isExpanded}
             setIsExpanded={setIsExpanded}
-            genImgAndUploadToEueno={genImgAndUploadToEueno}
             isLoading={isLoading}
           />
         );
@@ -67,7 +63,6 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
             <a
               href="#_"
               className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group"
-              onClick={handleCommit}
             >
               <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-0 bg-gradient-to-br from-pink-600 via-purple-700 to-blue-400 group-hover:opacity-100"></span>
 
@@ -88,99 +83,6 @@ const Customizer = ({ decalImageURL ,setDecalImageURL }) => {
           return <CommitList setDecalImageURL={setDecalImageURL} isShowCommits={isShowCommits} setIsShowCommits={setIsShowCommits}/>
       default:
         return null;
-    }
-  };
-
-  function handleCommit() {
-    const tx = commit({
-      token_id: id,
-      prompt,
-      eueno_url: decalImageURL
-    });
-    console.log(tx);
-  }
-
-  async function genImgAndUploadToEueno(prompt) {
-    console.log(prompt);
-    try {
-      setIsLoading(true);
-      const respBot = await fetch(
-        `${import.meta.env.VITE_BACKEND_BOT_ENDPOINT}/chatimage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt,
-          }),
-        }
-      );
-      setIsLoading(false);
-      const data = await respBot.json();
-      const {answer, image_url} = data;
-      console.log(data);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: "text",
-          isUser: false,
-          message: answer,
-        },
-        {
-          type: "image",
-          isUser: false,
-          message: image_url,
-        },
-      ]);
-
-      const respEueno = await fetch(
-        `${import.meta.env.VITE_BACKEND_EUENO_ENDPOINT}/eueno/upload-image`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      const dataEueno = await respEueno.json();
-      console.log(dataEueno);
-      const { file } = dataEueno.data;
-
-      setDecalImageURL(file);
-    } catch (err) {
-      console.log(err);
-      toast.error("Eueno error");
-    }
-  }
-
-  const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please enter a prompt");
-
-    try {
-      setGeneratingImg(true);
-
-      const response = await fetch("http://localhost:8080/api/v1/dalle", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt,
-        }),
-      });
-
-      const data = await response.json();
-
-      handleDecals(type, `data:image/png;base64,${data.photo}`);
-    } catch (error) {
-      alert(error);
-    } finally {
-      setGeneratingImg(false);
-      setActiveEditorTab("");
     }
   };
 
