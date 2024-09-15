@@ -39,7 +39,7 @@ export const LandingPage = () => {
 
   return (
     <div className="bg-black flex flex-row justify-center w-full">
-      <div className="bg-black overflow-hidden w-[1512px] h-[3150px] relative">
+      <div className="bg-black overflow-hidden w-[1512px] h-[2300px] relative">
         {/* <div className="flex w-[1728px] items-end gap-[90px] px-[45px] py-0 absolute top-[2393px] left-[-1826px]">
           <div className="inline-flex flex-col items-start justify-center relative flex-[0_0_auto]">
             <div className="inline-flex items-center justify-center gap-[10px] pt-[24px] pb-0 px-0 relative flex-[0_0_auto]">
@@ -276,80 +276,6 @@ export const LandingPage = () => {
                   Shared links allow friends and communities to view the
                   high-quality 3D renderings without the need to purchase.
                 </p>
-              </div>
-            </div>
-          </div>
-          <div className="flex w-[1512px] items-center px-[45px] py-0 relative flex-[0_0_auto]">
-            <div className="inline-flex items-start justify-center px-[40px] py-0 self-stretch flex-[0_0_auto] flex-col relative">
-              <div className="inline-flex items-center justify-center gap-[10px] pt-[24px] pb-0 px-0 relative flex-[0_0_auto]">
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Lexend_Deca-Light',Helvetica] font-light text-[#ffffff] text-[70px] tracking-[-7.00px] leading-[normal] whitespace-nowrap">
-                  Ecosystem
-                </div>
-              </div>
-            </div>
-            <div className="relative flex-[0_0_auto] h-[188px] bg-black border-l [border-left-style:solid] border-collection-1-line" />
-          </div>
-          <img
-            className="relative w-[1512px] h-[175px]"
-            alt="Frame"
-            src="frame-7.svg"
-          />
-          <div className="flex w-[1512px] items-start justify-between px-[45px] py-[40px] relative border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-collection-1-line">
-            <div className="flex flex-col items-start pt-[24px] pb-0 px-0 relative self-stretch">
-              <div className="relative mt-[-1.00px] font-header-1 font-[number:var(--header-1-font-weight)] text-[#ffffff] text-[length:var(--header-1-font-size)] tracking-[var(--header-1-letter-spacing)] leading-[var(--header-1-line-height)] [font-style:var(--header-1-font-style)]">
-                Orai3D JOIN THE <br /> WAITLIST
-              </div>
-              <div className="flex w-[676px] h-[95px] items-center justify-end gap-[10px] relative mr-[-5.00px]">
-                <p className="relative flex-1 font-text font-[number:var(--text-font-weight)] text-text-color text-[length:var(--text-font-size)] tracking-[var(--text-letter-spacing)] leading-[var(--text-line-height)] [font-style:var(--text-font-style)]">
-                  Don't miss out on the chance to be a pioneer in the 3D NFT
-                  space. Together, let's redefine the way we experience and
-                  appreciate digital art.
-                  <br /> Stay tuned for updates, sneak peeks, and more surprises
-                  as we countdown to launch day! 🚀
-                </p>
-              </div>
-            </div>
-            <div className="inline-flex flex-col items-end justify-center gap-[16px] relative flex-[0_0_auto]">
-              <div className="w-[654px] gap-[10px] px-[24px] py-[12px] relative border border-solid border-[#ffffff]">
-                <div className="relative mt-[-1.00px] font-big-text font-[number:var(--big-text-font-weight)] text-text-color text-[length:var(--big-text-font-size)] tracking-[var(--big-text-letter-spacing)] leading-[var(--big-text-line-height)] [font-style:var(--big-text-font-style)]">
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    className="w-full bg-transparent"
-                  />
-                </div>
-              </div>
-              <div className="w-[654px] gap-[10px] px-[24px] py-[12px] relative border border-solid border-[#ffffff]">
-                <div className="relative mt-[-1.00px] font-big-text font-[number:var(--big-text-font-weight)] text-text-color text-[length:var(--big-text-font-size)] tracking-[var(--big-text-letter-spacing)] leading-[var(--big-text-line-height)] [font-style:var(--big-text-font-style)]">
-                  <input
-                    type="tel"
-                    placeholder="Phone"
-                    className="w-full bg-transparent"
-                  />
-                </div>
-              </div>
-              <div className="w-[654px] gap-[10px] px-[24px] py-[12px] relative border border-solid border-[#ffffff]">
-                <div className="relative mt-[-1.00px] font-big-text font-[number:var(--big-text-font-weight)] text-text-color text-[length:var(--big-text-font-size)] tracking-[var(--big-text-letter-spacing)] leading-[var(--big-text-line-height)] [font-style:var(--big-text-font-style)]">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full bg-transparent"
-                  />
-                </div>
-              </div>
-              <div className="w-[654px] gap-[10px] px-[24px] py-[12px] relative border border-solid border-[#ffffff]">
-                <p className="relative flex-1 mt-[-1.00px] font-big-text font-[number:var(--big-text-font-weight)] text-text-color text-[length:var(--big-text-font-size)] tracking-[var(--big-text-letter-spacing)] leading-[var(--big-text-line-height)] [font-style:var(--big-text-font-style)]">
-                  <input
-                    type="text"
-                    placeholder="How are you planning on using Orai3D and what feature do you think is the most crucial"
-                    className="w-full bg-transparent"
-                  />
-                </p>
-              </div>
-              <div className="inline-flex items-center justify-end gap-[10px] px-[24px] py-[12px] relative flex-[0_0_auto] border border-solid border-[#ffffff]">
-                <div className="relative w-fit mt-[-1.00px] font-big-text font-[number:var(--big-text-font-weight)] text-[#ffffff] text-[length:var(--big-text-font-size)] tracking-[var(--big-text-letter-spacing)] leading-[var(--big-text-line-height)] [font-style:var(--big-text-font-style)]">
-                  <button>Send</button>
-                </div>
               </div>
             </div>
           </div>
