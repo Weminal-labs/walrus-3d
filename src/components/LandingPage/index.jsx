@@ -4,6 +4,7 @@ import { Header } from "../Header";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
+
 export const LandingPage = () => {
   const infiniteTextMove = useRef(null);
   const secondInfiniteTextMove = useRef(null);
@@ -162,7 +163,7 @@ export const LandingPage = () => {
                   Orai3D simplifies the process of designing and minting NFTs by
                   integrating AI-generated images and user interaction through
                   Weminal's assistance. The platform securely stores the
-                  generated images on Eueno's decentralized storage. <br /> We
+                  generated images on Walrus's decentralized storage. <br /> We
                   encourages users to share their creations with other artists
                 </p>
               </div>
@@ -267,7 +268,7 @@ export const LandingPage = () => {
               </div>
               <div className="flex w-[676px] justify-end items-center gap-[10px] relative flex-[0_0_auto]">
                 <p className="relative flex-1 mt-[-1.00px] font-text font-[number:var(--text-font-weight)] text-text-color text-[length:var(--text-font-size)] text-left tracking-[var(--text-letter-spacing)] leading-[var(--text-line-height)] [font-style:var(--text-font-style)]">
-                  With a completed custom design saved in their Eueno workspace,
+                  With a completed custom design saved in their Walrus workspace,
                   users mint it as an NFT to proves their ownership on the
                   blockchain and allows others to purchase and admire the work.
                   <br />

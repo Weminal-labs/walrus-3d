@@ -18,13 +18,7 @@ export const Header = () => {
         <div className="inline-flex items-center gap-[32px] relative flex-[0_0_auto]">
           <div className="inline-flex items-end gap-[60px] relative flex-[0_0_auto]">
             <div className="relative w-fit mt-[-1.00px] font-header-3 font-[number:var(--header-3-font-weight)] text-[#ffffff] text-[length:var(--header-3-font-size)] tracking-[var(--header-3-letter-spacing)] leading-[var(--header-3-line-height)] [font-style:var(--header-3-font-style)]">
-              <a
-                href="https://wedata.gitbook.io/weminal-docs/ecosystem/ai-tools-and-applications/orai3d"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Docs
-              </a>
+              Docs
             </div>
             <div className="relative w-fit mt-[-1.00px] font-header-3 font-[number:var(--header-3-font-weight)] text-[#ffffff] text-[length:var(--header-3-font-size)] tracking-[var(--header-3-letter-spacing)] leading-[var(--header-3-line-height)] [font-style:var(--header-3-font-style)]">
               $Orai3D
