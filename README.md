@@ -12,4 +12,3 @@ Orai3D simplifies the process of designing and minting NFTs by integrating AI-ge
 
 We encourages users to share their creations with other artists
 
-Our Pitchdesk: [Link](https://www.canva.com/design/DAF61oALydM/Q6teObqmkBe8Wwxy4dW-zw/edit)
